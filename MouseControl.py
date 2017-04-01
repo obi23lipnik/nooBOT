@@ -17,36 +17,32 @@ class Action(object):
     def is_reversed(value):
         return value < 0
 
-    @staticmethod
-    def get_pos():
-        return win32api.GetCursorPos()
+    def get_pos(self):
+        x,y = win32api.GetCursorPos()
+        return (x-self.x_lowest, y-self.y_lowest)
 
     def set_pos(self, x, y, verbose=False):
         if x > self.x_maximum:
             x = self.x_maximum
-        elif x < self.x_lowest:
-            x = self.x_lowest
 
         if y > self.y_maximum:
             y = self.y_maximum
-        elif y < self.y_lowest:
-            y = self.y_lowest
 
-        win32api.SetCursorPos((x, y))
+        win32api.SetCursorPos((x+self.x_lowest, y+self.y_lowest))
 
         if verbose:
             print 'Moved to ({0}, {1})'.format(x, y)
 
-    @staticmethod
-    def bow_binary_range(x_len, y_len):
-        if x_len >= y_len:
-            division = x_len / y_len
-            point = x_len % y_len
-            if point == 0:
-                dir_range = [True for direction in range(x_len)]
-                i = 0
-                for direction in dir_range:
-                    if
+    # @staticmethod
+    # def bow_binary_range(x_len, y_len):
+    #     if x_len >= y_len:
+    #         division = x_len / y_len
+    #         point = x_len % y_len
+    #         if point == 0:
+    #             dir_range = [True for direction in range(x_len)]
+    #             i = 0
+    #             for direction in dir_range:
+    #                 if
 
 
 
